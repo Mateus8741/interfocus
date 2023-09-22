@@ -2,16 +2,17 @@ import {
   BottomTabNavigationProp,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import { ClientScreen, HomeScreen } from '@screens';
+import { HomeScreen } from '@screens';
 
 import { Platform } from 'react-native';
 
 import HomeSvg from '../assets/home.svg';
 import UserSvg from '../assets/user.svg';
+import { UserAppStack } from './UserAppStack';
 
 export type AppTabBar = {
   HomeScreen: undefined;
-  ClientScreen: undefined;
+  UserAppStack: undefined;
 };
 
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppTabBar>;
@@ -44,8 +45,8 @@ export function AppTabBar() {
       />
 
       <Screen
-        name="ClientScreen"
-        component={ClientScreen}
+        name="UserAppStack"
+        component={UserAppStack}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: () => <UserSvg width={24} height={24} />,
