@@ -6,15 +6,17 @@ interface CardProps {
   cpf: string;
   email: string;
   debt: number;
+  onPress?: () => void;
 }
 
-export function ClientCard({ name, cpf, email, debt }: CardProps) {
+export function ClientCard({ name, cpf, email, debt, onPress }: CardProps) {
   const formattedDebt = debt.toLocaleString('pt-BR', {
     minimumFractionDigits: 2,
   });
 
   return (
     <TouchableOpacity
+      onPress={onPress}
       className="w-full bg-white rounded-lg px-4 py-3 mb-4"
       style={$shadowProps}>
       <Text className="text-contrast-300 text-lg font-Bold mb-2">{name}</Text>
@@ -45,7 +47,7 @@ export function ClientCard({ name, cpf, email, debt }: CardProps) {
 }
 
 export const $shadowProps: ViewStyle = {
-  elevation: 10,
+  elevation: 4,
   shadowColor: '#000',
   shadowOpacity: 0.2,
   shadowRadius: 3,

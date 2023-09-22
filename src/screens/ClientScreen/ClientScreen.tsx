@@ -2,6 +2,7 @@ import { ClientCard, Header, Screen, TextInput } from '@components';
 import { MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
 import { FlatList } from 'react-native';
+import { AppScreenProps } from 'src/routes/navigationTypes';
 
 const data = [
   {
@@ -27,25 +28,29 @@ const data = [
   },
 ];
 
-export function ClientScreen() {
-  return (
-    <>
-      <Header title="Clientes" />
-      <Screen>
-        <TextInput
-          placeholder="Digite o nome do cliente"
-          rightComponent={
-            <MaterialIcons name="search" size={24} color="#A3A3A3" />
-          }
-        />
+export function ClientScreen({ navigation }: AppScreenProps<'AppTabBar'>) {
+  function goToClientDetails(data: any) {
+    navigation.navigate('ClientDetails', data);
+  }
 
-        <FlatList
-          data={data}
-          renderItem={({ item }) => <ClientCard {...item} />}
-          keyExtractor={item => item.id.toString()}
-          showsVerticalScrollIndicator={false}
-        />
-      </Screen>
-    </>
+  return (
+    <Screen>
+      <Header title="Clientes" />
+      <TextInput
+        placeholder="Digite o nome do cliente"
+        rightComponent={
+          <MaterialIcons name="search" size={24} color="#A3A3A3" />
+        }
+      />
+
+      <FlatList
+        data={data}
+        renderItem={({ item }) => (
+          <ClientCard {...item} onPress={() => goToClientDetails(item)} />
+        )}
+        keyExtractor={item => item.id.toString()}
+        showsVerticalScrollIndicator={false}
+      />
+    </Screen>
   );
 }
