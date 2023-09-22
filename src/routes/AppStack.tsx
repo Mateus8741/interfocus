@@ -1,7 +1,7 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen } from "@screens";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { HomeScreen } from '@screens';
 
-import React from "react";
+import React from 'react';
 
 export type AppStackParamList = {
   HomeScreen: undefined;
@@ -16,12 +16,8 @@ export function AppStack() {
       screenOptions={{
         headerShown: false,
         fullScreenGestureEnabled: true,
-      }}
-    >
-      <Screen
-        name="HomeScreen"
-        component={HomeScreen}
-      />
+      }}>
+      <Screen name="HomeScreen" component={HomeScreen} />
     </Navigator>
   );
 }

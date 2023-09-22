@@ -1,8 +1,8 @@
-import { MaterialIcons } from "@expo/vector-icons";
-import { useAppSafeArea } from "@hooks";
-import { useNavigation } from "@react-navigation/native";
-import React from "react";
-import { Pressable, StatusBar, Text, View } from "react-native";
+import { MaterialIcons } from '@expo/vector-icons';
+import { useAppSafeArea } from '@hooks';
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { Pressable, StatusBar, Text, View } from 'react-native';
 
 interface HeaderProps {
   title: string;
@@ -18,15 +18,14 @@ export function Header({ title, goBack }: HeaderProps) {
     Back();
   }
 
-  const gobackIcon = goBack ? "justify-between" : "justify-center";
+  const gobackIcon = goBack ? 'justify-between' : 'justify-center';
 
   return (
     <View
       className="pb-4 bg-white"
       style={{
         paddingTop: top,
-      }}
-    >
+      }}>
       <StatusBar
         barStyle="dark-content"
         backgroundColor="transparent"
@@ -37,22 +36,18 @@ export function Header({ title, goBack }: HeaderProps) {
         className={`flex-row ${gobackIcon} items-center px-5`}
         style={{
           paddingTop: 10,
-        }}
-      >
+        }}>
         {goBack && (
           <Pressable
             hitSlop={10}
             onPress={handleGoBack}
-            className="w-5 h-5 border justify-center items-center border-contrast-700 rounded-[4px]"
-          >
+            className="w-5 h-5 border justify-center items-center border-contrast-700 rounded-[4px]">
             <MaterialIcons name="chevron-left" size={20} color="#62A856" />
           </Pressable>
         )}
 
         <View className="items-center">
-          <Text className="text-contrast-700 text-lg font-Bold">
-            {title}
-          </Text>
+          <Text className="text-contrast-700 text-lg font-Bold">{title}</Text>
         </View>
 
         {goBack && <View className="bg-transparent h-5 w-5" />}
