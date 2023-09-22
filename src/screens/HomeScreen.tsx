@@ -1,10 +1,10 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-export function Home() {
+export function HomeScreen() {
   return (
     <View>
-      <Text>Home</Text>
+      <Text className="text-red-500">Home</Text>
     </View>
   );
 }
