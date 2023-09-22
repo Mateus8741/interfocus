@@ -1,4 +1,4 @@
-import { ClientCard, Header, Screen, TextInput } from '@components';
+import { Header, Screen, SummaryCard, TextInput } from '@components';
 import { MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
 import { FlatList } from 'react-native';
@@ -6,7 +6,7 @@ import { FlatList } from 'react-native';
 export function HomeScreen() {
   return (
     <>
-      <Header goBack title="Clientes" />
+      <Header title="Clientes" />
       <Screen>
         <TextInput
           placeholder="Digite o nome do cliente"
@@ -17,7 +17,7 @@ export function HomeScreen() {
 
         <FlatList
           data={[1, 2, 3, 4, 5, 6]}
-          renderItem={({ item }) => <ClientCard />}
+          renderItem={({ item }) => <SummaryCard />}
           keyExtractor={item => item.toString()}
           showsVerticalScrollIndicator={false}
         />
