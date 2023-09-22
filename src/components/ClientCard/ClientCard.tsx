@@ -8,7 +8,7 @@ interface CardProps {
   debt: number;
 }
 
-export function Card() {
+export function ClientCard() {
   return (
     <View
       className="w-full bg-white rounded-lg px-4 py-3 mb-4"
