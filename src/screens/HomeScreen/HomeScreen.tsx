@@ -6,7 +6,7 @@ import { FlatList } from 'react-native';
 export function HomeScreen() {
   return (
     <>
-      <Header title="Clientes" />
+      <Header title="Resumo de dívidas" />
       <Screen>
         <TextInput
           placeholder="Digite o nome do cliente"
