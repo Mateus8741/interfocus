@@ -8,7 +8,7 @@ interface UseMutationQueryProps {
   body: number;
 }
 
-export function useMutationQuery({ endPoint, body }: UseMutationQueryProps) {
+export function useMutationClient({ endPoint, body }: UseMutationQueryProps) {
   const { navigate } = useNavigation();
   const { showToast } = useToastService();
 

@@ -8,7 +8,7 @@ import {
   Screen,
 } from '@components';
 import { useAppSafeArea } from '@hooks';
-import { api, useMutationQuery } from '@libs';
+import { api, useMutationClient } from '@libs';
 import { UserTabProps } from '@routes';
 import { useQuery } from '@tanstack/react-query';
 import React, { useRef } from 'react';
@@ -43,7 +43,7 @@ export function ClientDetails({ route }: UserTabProps<'ClientDetails'>) {
     queryFn: () => api.get(`/Divida/${id}`),
   });
 
-  const { mutate, isLoading } = useMutationQuery({
+  const { mutate, isLoading } = useMutationClient({
     endPoint: '/Divida/Pagar',
     body: id,
   });
