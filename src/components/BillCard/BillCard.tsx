@@ -7,10 +7,11 @@ import { $shadowProps } from '../ClientCard/ClientCard';
 interface BillCardProps {
   bill: string;
   value: number;
-  status: 'paid' | 'unpaid';
+  status: 'paid' | 'pending';
+  onPress?: () => void;
 }
 
-export function BillCard({ bill, value, status }: BillCardProps) {
+export function BillCard({ bill, value, status, onPress }: BillCardProps) {
   const formattedDebt = value.toLocaleString('pt-BR', {
     minimumFractionDigits: 2,
   });
@@ -21,8 +22,8 @@ export function BillCard({ bill, value, status }: BillCardProps) {
       style={$shadowProps}>
       <View className="flex-row justify-between items-center">
         <Text className="text-contrast-300 text-lg font-Bold mb-2">{bill}</Text>
-        {status === 'unpaid' ? (
-          <Button buttonType="payment" title="Pagar" />
+        {status === 'pending' ? (
+          <Button buttonType="payment" title="Pagar" onPress={onPress} />
         ) : (
           <CheckCircle width={16} height={16} />
         )}

@@ -4,5 +4,6 @@ export interface ClientDTO {
   email: string;
   debt: number;
   bday: string;
+  status: 'paid' | 'pending';
   id: string;
 }

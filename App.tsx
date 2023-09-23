@@ -3,9 +3,11 @@ import {
   OpenSans_600SemiBold,
   OpenSans_700Bold,
   useFonts,
-} from "@expo-google-fonts/open-sans";
-import { Routes } from "@routes";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+} from '@expo-google-fonts/open-sans';
+import { Routes } from '@routes';
+import React from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -20,7 +22,9 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <Routes />
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Routes />
+      </GestureHandlerRootView>
     </SafeAreaProvider>
   );
 }

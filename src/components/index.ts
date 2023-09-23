@@ -1,6 +1,7 @@
 export * from './BillCard/BillCard';
 export * from './Button/Button';
 export * from './ClientCard/ClientCard';
+export * from './CustomBottomSheet/CustomBottomSheet';
 export * from './CustonDropdown/CustonDropdown';
 export * from './DetailsTexts/DetailsText';
 export * from './FloatingButton/FloatingButton';

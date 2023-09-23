@@ -19,6 +19,7 @@ const data: ClientDTO[] = [
     email: 'teste@tste.com',
     bday: '12/12/1999',
     debt: 3450.46,
+    status: 'paid',
   },
   {
     id: '2',
@@ -27,6 +28,7 @@ const data: ClientDTO[] = [
     email: 'teste@test.com',
     bday: '12/12/1999',
     debt: 6846.25,
+    status: 'pending',
   },
   {
     id: '3',
@@ -35,6 +37,7 @@ const data: ClientDTO[] = [
     email: 'teste@tte.com',
     bday: '12/12/1999',
     debt: 9863.52,
+    status: 'paid',
   },
 ];
 
