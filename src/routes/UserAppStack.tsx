@@ -1,13 +1,14 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { ClientDTO } from '@DTOS';
-import { ClientDetails, ClientScreen, NewClient } from '@screens';
+import { ClientDetails, ClientScreen, NewBill, NewClient } from '@screens';
 import React from 'react';
 
 export type UserAppStackParamList = {
   ClientScreen: undefined;
   NewClient: undefined;
   ClientDetails: ClientDTO;
+  NewBill: undefined;
 };
 
 export function UserAppStack() {
@@ -24,6 +25,7 @@ export function UserAppStack() {
       <Screen name="ClientScreen" component={ClientScreen} />
       <Screen name="NewClient" component={NewClient} />
       <Screen name="ClientDetails" component={ClientDetails} />
+      <Screen name="NewBill" component={NewBill} />
     </Navigator>
   );
 }
