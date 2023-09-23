@@ -1,8 +1,9 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import { useAppSafeArea } from '@hooks';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Pressable, StatusBar, Text, View } from 'react-native';
+
+import ArrowSvg from '../../assets/arrowleft.svg';
 
 interface HeaderProps {
   title: string;
@@ -42,7 +43,7 @@ export function Header({ title, goBack }: HeaderProps) {
             hitSlop={10}
             onPress={handleGoBack}
             className="w-5 h-5 border justify-center items-center border-contrast-700 rounded-[4px]">
-            <MaterialIcons name="chevron-left" size={20} color="#62A856" />
+            <ArrowSvg width={20} height={20} />
           </Pressable>
         )}
 
