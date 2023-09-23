@@ -17,7 +17,7 @@ export function BillCard({ bill, value, status }: BillCardProps) {
 
   return (
     <View
-      className="w-full bg-white rounded-lg gap-y-2 px-4 py-3 mb-4"
+      className="w-full bg-white rounded-lg gap-y-2 px-4 py-3 mb-4 mt-3"
       style={$shadowProps}>
       <View className="flex-row justify-between items-center">
         <Text className="text-contrast-300 text-lg font-Bold mb-2">{bill}</Text>
