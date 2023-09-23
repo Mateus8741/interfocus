@@ -1,11 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { ClientDTO } from '@DTOS';
-import { ClientDetails, ClientScreen } from '@screens';
+import { ClientScreen, NewClient } from '@screens';
 import React from 'react';
 
 export type UserAppStackParamList = {
   ClientScreen: undefined;
+  NewClient: undefined;
   ClientDetails: ClientDTO;
 };
 
@@ -21,7 +22,7 @@ export function UserAppStack() {
         fullScreenGestureEnabled: true,
       }}>
       <Screen name="ClientScreen" component={ClientScreen} />
-      <Screen name="ClientDetails" component={ClientDetails} />
+      <Screen name="NewClient" component={NewClient} />
     </Navigator>
   );
 }

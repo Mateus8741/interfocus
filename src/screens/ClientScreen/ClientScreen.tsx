@@ -1,5 +1,11 @@
 import { ClientDTO } from '@DTOS';
-import { ClientCard, Header, Screen, TextInput } from '@components';
+import {
+  ClientCard,
+  FloatingButton,
+  Header,
+  Screen,
+  TextInput,
+} from '@components';
 import { MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
 import { FlatList } from 'react-native';
@@ -37,6 +43,10 @@ export function ClientScreen({ navigation }: UserTabProps<'ClientScreen'>) {
     navigation.navigate('ClientDetails', data);
   }
 
+  function goToNewClient() {
+    navigation.navigate('NewClient');
+  }
+
   return (
     <Screen>
       <Header title="Clientes" />
@@ -46,6 +56,8 @@ export function ClientScreen({ navigation }: UserTabProps<'ClientScreen'>) {
           <MaterialIcons name="search" size={24} color="#A3A3A3" />
         }
       />
+
+      <FloatingButton onPress={goToNewClient} />
 
       <FlatList
         data={data}

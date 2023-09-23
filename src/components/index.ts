@@ -1,5 +1,6 @@
 export * from './Button/Button';
 export * from './ClientCard/ClientCard';
+export * from './FloatingButton/FloatingButton';
 export * from './FormTextIntput/FormTextInput';
 export * from './Header/Header';
 export * from './Screen/Screen';
