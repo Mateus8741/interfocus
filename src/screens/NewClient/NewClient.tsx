@@ -8,7 +8,7 @@ import { Text, View } from 'react-native';
 import { useAppSafeArea } from '@hooks';
 import { NewClientScheema, newClientScheema } from './newClientScheema';
 
-export function NewClient({ route }: UserTabProps<'NewClient'>) {
+export function NewClient({ navigation }: UserTabProps<'NewClient'>) {
   const { bottom } = useAppSafeArea();
 
   const { control, handleSubmit, formState } = useForm<NewClientScheema>({
@@ -25,6 +25,10 @@ export function NewClient({ route }: UserTabProps<'NewClient'>) {
 
   function createNewClient(data: NewClientScheema) {
     console.log(data);
+  }
+
+  function goBack() {
+    navigation.goBack();
   }
 
   return (
@@ -78,8 +82,13 @@ export function NewClient({ route }: UserTabProps<'NewClient'>) {
         <View
           className="flex-row gap-x-4 self-center justify-end items-center"
           style={{ paddingBottom: bottom }}>
-          <Button title="Cancelar" buttonType="outlined" />
-          <Button title="Salvar" onPress={handleSubmit(createNewClient)} />
+          <Button title="Cancelar" buttonType="outlined" onPress={goBack} />
+          <Button
+            title="Salvar"
+            onPress={handleSubmit(createNewClient)}
+            buttonType={!formState.isValid ? 'disabled' : 'primary'}
+            disabled={!formState.isValid}
+          />
         </View>
       </Screen>
     </>

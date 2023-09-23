@@ -1,5 +1,7 @@
+export * from './BillCard/BillCard';
 export * from './Button/Button';
 export * from './ClientCard/ClientCard';
+export * from './DetailsTexts/DetailsText';
 export * from './FloatingButton/FloatingButton';
 export * from './FormTextIntput/FormTextInput';
 export * from './Header/Header';

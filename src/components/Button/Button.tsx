@@ -24,6 +24,10 @@ const $button = tv({
         container: 'border-2 border-contrast-700',
         textBase: 'text-contrast-700',
       },
+      payment: {
+        container: 'bg-error',
+        textBase: 'text-white',
+      },
       disabled: {
         container: 'bg-gray-200',
         textBase: 'text-gray-400',
@@ -44,7 +48,7 @@ export interface ButtonProps
   extends TouchableOpacityProps,
     VariantProps<typeof $button> {
   title: string;
-  buttonType?: 'primary' | 'outlined' | 'disabled' | 'isLoading';
+  buttonType?: 'primary' | 'outlined' | 'payment' | 'disabled' | 'isLoading';
 }
 
 export function Button({
