@@ -1,13 +1,13 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { ClientDTO } from '@DTOS';
+import { Root } from '@DTOS';
 import { ClientDetails, ClientScreen, NewBill, NewClient } from '@screens';
 import React from 'react';
 
 export type UserAppStackParamList = {
   ClientScreen: undefined;
   NewClient: undefined;
-  ClientDetails: ClientDTO;
+  ClientDetails: Root;
   NewBill: undefined;
 };
 

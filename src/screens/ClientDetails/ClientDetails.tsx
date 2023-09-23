@@ -8,12 +8,14 @@ import {
   Screen,
 } from '@components';
 import { useAppSafeArea } from '@hooks';
+import { api, useMutationQuery } from '@libs';
 import { UserTabProps } from '@routes';
+import { useQuery } from '@tanstack/react-query';
 import React, { useRef } from 'react';
 import { Dimensions, Text, View } from 'react-native';
 
 export function ClientDetails({ route }: UserTabProps<'ClientDetails'>) {
-  const { name, cpf, email, bday, debt, status } = route.params;
+  const { cliente, id } = route.params;
 
   const { bottom } = useAppSafeArea();
 
@@ -29,27 +31,38 @@ export function ClientDetails({ route }: UserTabProps<'ClientDetails'>) {
     modal.current?.handleParentCloseBottonShet();
   }
 
+  const { data } = useQuery({
+    queryKey: ['bill', id],
+    queryFn: () => api.get(`/Divida/${id}`),
+  });
+
+  const { mutate, isLoading } = useMutationQuery({
+    endPoint: '/Divida/Pagar',
+    body: id,
+  });
+
   function payBill() {
-    console.log('pagar');
+    mutate();
+    handleCloseModal();
   }
 
   return (
     <>
       <Header goBack title="Detalhes do cliente" />
       <Screen>
-        <DetailsText label="Nome" value={name} />
+        <DetailsText label="Nome" value={cliente?.nome} />
 
         <View className="flex-row justify-between items-center space-x-2 mt-3 mb-3">
           <View className="w-[166px]">
-            <DetailsText label="CPF" value={cpf} />
+            <DetailsText label="CPF" value={cliente?.cpf} />
           </View>
 
           <View className="w-[166px]">
-            <DetailsText label="Nascimento" value={bday} />
+            <DetailsText label="Nascimento" value={cliente?.dataNascimento} />
           </View>
         </View>
 
-        <DetailsText label="Email" value={email} />
+        <DetailsText label="Email" value={cliente?.email} />
 
         <View className="flex-row justify-between mt-6 mb-2">
           <Text className="text-contrast-700 text-lg font-Bold">Dívidas</Text>
@@ -61,12 +74,7 @@ export function ClientDetails({ route }: UserTabProps<'ClientDetails'>) {
           </View>
         </View>
 
-        <BillCard
-          bill={name}
-          value={debt}
-          status={status}
-          onPress={handleOpenModal}
-        />
+        <BillCard data={data?.data} onPress={handleOpenModal} />
       </Screen>
 
       <CustomBottomSheet ref={modal} height={modalSize}>
@@ -84,7 +92,11 @@ export function ClientDetails({ route }: UserTabProps<'ClientDetails'>) {
               buttonType="outlined"
               onPress={handleCloseModal}
             />
-            <Button title="Confirmar" onPress={payBill} buttonType="primary" />
+            <Button
+              title="Confirmar"
+              onPress={payBill}
+              buttonType={isLoading ? 'isLoading' : 'primary'}
+            />
           </View>
         </View>
       </CustomBottomSheet>

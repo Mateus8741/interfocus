@@ -1,16 +1,14 @@
+import { Root } from '@DTOS';
 import React from 'react';
 import { Text, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 interface CardProps {
-  name: string;
-  cpf: string;
-  email: string;
-  debt: number;
+  data: Root;
   onPress?: () => void;
 }
 
-export function ClientCard({ name, cpf, email, debt, onPress }: CardProps) {
-  const formattedDebt = debt.toLocaleString('pt-BR', {
+export function ClientCard({ data, onPress }: CardProps) {
+  const formattedDebt = data?.valor?.toLocaleString('pt-BR', {
     minimumFractionDigits: 2,
   });
 
@@ -19,18 +17,24 @@ export function ClientCard({ name, cpf, email, debt, onPress }: CardProps) {
       onPress={onPress}
       className="w-full bg-white rounded-lg px-4 py-3 mb-4"
       style={$shadowProps}>
-      <Text className="text-contrast-300 text-lg font-Bold mb-2">{name}</Text>
+      <Text className="text-contrast-300 text-lg font-Bold mb-2">
+        {data?.cliente?.nome}
+      </Text>
 
       <View className="flex-row gap-x-2 mb-2">
         <Text className="text-text-200 text-sm font-Bold">CPF:</Text>
 
-        <Text className="text-text-100 text-sm font-Regular">{cpf}</Text>
+        <Text className="text-text-100 text-sm font-Regular">
+          {data?.cliente?.cpf}
+        </Text>
       </View>
 
       <View className="flex-row gap-x-2">
         <Text className="text-text-200 text-sm font-Bold">E-mail:</Text>
 
-        <Text className="text-text-100 text-sm font-Regular">{email}</Text>
+        <Text className="text-text-100 text-sm font-Regular">
+          {data?.cliente?.email}
+        </Text>
       </View>
 
       <View className="flex-row justify-between items-center border-t border-gray-200 mt-2">

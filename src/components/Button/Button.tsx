@@ -33,7 +33,7 @@ const $button = tv({
         textBase: 'text-gray-400',
       },
       isLoading: {
-        container: 'bg-primary-500',
+        container: 'bg-contrat-700 w-[102px]',
         textBase: 'text-white',
       },
     },

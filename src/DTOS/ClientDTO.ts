@@ -1,9 +1,16 @@
-export interface ClientDTO {
-  name: string;
+export interface Root {
+  cliente: Cliente;
+  dataPagamento: string;
+  descricao: string;
+  id: number;
+  valor: number;
+}
+
+export interface Cliente {
   cpf: string;
+  dataNascimento: string;
   email: string;
-  debt: number;
-  bday: string;
-  status: 'paid' | 'pending';
-  id: string;
+  id: number;
+  nome: string;
+  retorno: any[];
 }
