@@ -23,6 +23,13 @@ export function ClientDetails({ route }: UserTabProps<'ClientDetails'>) {
 
   const modalSize = Dimensions.get('screen').height / 4.2 + bottom;
 
+  const formattedDate = new Date(cliente?.dataNascimento).toLocaleDateString(
+    'pt-BR',
+    {
+      timeZone: 'UTC',
+    },
+  );
+
   function handleOpenModal() {
     modal.current?.handleParentOpenBottonShet();
   }
@@ -58,7 +65,7 @@ export function ClientDetails({ route }: UserTabProps<'ClientDetails'>) {
           </View>
 
           <View className="w-[166px]">
-            <DetailsText label="Nascimento" value={cliente?.dataNascimento} />
+            <DetailsText label="Nascimento" value={formattedDate} />
           </View>
         </View>
 
