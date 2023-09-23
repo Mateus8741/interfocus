@@ -11,3 +11,4 @@ export * from './Header/Header';
 export * from './Screen/Screen';
 export * from './SummaryCard/SummaryCard';
 export * from './TextInput/TextInput';
+export * from './Toast/Toast';
