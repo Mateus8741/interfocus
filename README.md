@@ -6,18 +6,27 @@
   </a>
 </p>
 
+> [!NOTE]
 > Projeto feito para vaga de Desenvolvedor Mobile na empresa Interfocus
 
-## Alert
-> Decidi usar expo pois é um projeto simples sem muita abrangencia. Porém uso React Native CLI tranquilamente.
+> [!WARNING]
+> Decidi usar expo pois é um projeto simples que não terá escalonamento. Porém uso React Native CLI tranquilamente.
 
-## Install
+## 📚 Libs
+
+1. Nativewind por questões de produtividade
+2. TanStack Query por questões de performace
+3. Reacr Hook Form para formulário
+4. Zod para validação, sendo ótimo com Typescript
+5. Zustand para o contexto do Toast que fiz para alertar ações
+
+## 🚀 Install
 
 ```sh
 yarn install
 ```
 
-## Usage
+## 📱 Usage
 
 ```sh
 #EXPO GO
@@ -37,13 +46,13 @@ yarn ios
 yarn android
 ```
 
-## Pictures
+## 🖼️ Pictures
+
 <img src="https://github.com/Mateus8741/interfocus/assets/62652109/b619718f-1a1f-4e27-813a-f3d246f8670e" alt="Imagem de exemplo" width="300" height="600">
 <img src="https://github.com/Mateus8741/interfocus/assets/62652109/7763b75d-417e-4e32-9038-206a8d37e579" alt="Imagem de exemplo" width="300" height="600">
 <img src="https://github.com/Mateus8741/interfocus/assets/62652109/f2b768be-602b-4919-b6c5-336fd5307818" alt="Imagem de exemplo" width="300" height="600">
 
-
-## Author
+## 💻 Author
 
 👤 **Mateus Tavares**
 
