@@ -8,6 +8,9 @@
 
 > Projeto feito para vaga de Desenvolvedor Mobile na empresa Interfocus
 
+## Alert
+> Decidi usar expo pois é um projeto simples sem muita abrangencia. Porém uso React Native CLI tranquilamente.
+
 ## Install
 
 ```sh
