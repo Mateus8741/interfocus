@@ -1,4 +1,3 @@
-import { Root } from '@DTOS';
 import {
   ClientCard,
   FloatingButton,
@@ -13,44 +12,14 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { UserTabProps } from 'src/routes/navigationTypes';
 
-// const data: Root[] = [
-//   {
-//     id: 1,
-//     cliente: 'João da Silva',
-//     cpf: '123.456.789-10',
-//     email: 'teste@tste.com',
-//     bday: '12/12/1999',
-//     debt: 3450.46,
-//     status: 'paid',
-//   },
-//   {
-//     id: '2',
-//     name: 'Arthur da Silva',
-//     cpf: '123.421.789-10',
-//     email: 'teste@test.com',
-//     bday: '12/12/1999',
-//     debt: 6846.25,
-//     status: 'pending',
-//   },
-//   {
-//     id: '3',
-//     name: 'Maria da Silva',
-//     cpf: '432.456.789-10',
-//     email: 'teste@tte.com',
-//     bday: '12/12/1999',
-//     debt: 9863.52,
-//     status: 'paid',
-//   },
-// ];
-
 export function ClientScreen({ navigation }: UserTabProps<'ClientScreen'>) {
   const { data } = useQuery({
     queryKey: ['bill'],
     queryFn: () => api.get('/Divida/GetOData'),
   });
 
-  function goToClientDetails(data: Root) {
-    navigation.navigate('ClientDetails', data);
+  function goToClientDetails(data: number) {
+    navigation.navigate('ClientDetails', { id: data });
   }
 
   function goToNewClient() {
@@ -72,7 +41,7 @@ export function ClientScreen({ navigation }: UserTabProps<'ClientScreen'>) {
       <FlatList
         data={data?.data.d.results}
         renderItem={({ item }) => (
-          <ClientCard data={item} onPress={() => goToClientDetails(item)} />
+          <ClientCard data={item} onPress={() => goToClientDetails(item.id)} />
         )}
         keyExtractor={item => item.id.toString()}
         showsVerticalScrollIndicator={false}

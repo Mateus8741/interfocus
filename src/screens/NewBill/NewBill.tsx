@@ -6,15 +6,23 @@ import {
   Screen,
 } from '@components';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useAppSafeArea } from '@hooks';
+import { dataParaISO8601, useAppSafeArea } from '@hooks';
+import { api } from '@libs';
 import { UserTabProps } from '@routes';
+import { useToastService } from '@services';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { NewBillScheema, newBillScheema } from './newBillScheema';
 
-export function NewBill({ navigation }: UserTabProps<'NewBill'>) {
+export function NewBill({ navigation, route }: UserTabProps<'NewBill'>) {
+  const { id } = route.params;
+
+  console.log('newbill', id);
+
   const { bottom } = useAppSafeArea();
+
+  const { showToast } = useToastService();
 
   const { control, formState, handleSubmit } = useForm<NewBillScheema>({
     resolver: zodResolver(newBillScheema),
@@ -27,8 +35,26 @@ export function NewBill({ navigation }: UserTabProps<'NewBill'>) {
     },
   });
 
-  function createNewBill(data: any) {
-    console.log(data);
+  async function createNewBill(data: NewBillScheema) {
+    try {
+      if (id) {
+        await api.post('/Divida', {
+          valor: data.value,
+          dataPagamento: dataParaISO8601(data.payementDate),
+          descricao: data.status,
+          clienteId: id,
+        });
+
+        showToast({
+          type: 'success',
+          message: 'Nova Dívida adicionada!',
+        });
+
+        navigation.navigate('ClientScreen');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function goBack() {

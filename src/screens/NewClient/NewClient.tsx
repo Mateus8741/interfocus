@@ -11,10 +11,16 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Text, View } from 'react-native';
 
-import { useAppSafeArea } from '@hooks';
+import { dataParaISO8601, formatarCPF, useAppSafeArea } from '@hooks';
+import { api } from '@libs';
+import { useToastService } from '@services';
 import { NewClientScheema, newClientScheema } from './newClientScheema';
 
 export function NewClient({ navigation }: UserTabProps<'NewClient'>) {
+  const [CPF, setCPF] = React.useState<string>('');
+
+  const { showToast } = useToastService();
+
   const { bottom } = useAppSafeArea();
 
   const { control, handleSubmit, formState } = useForm<NewClientScheema>({
@@ -29,8 +35,24 @@ export function NewClient({ navigation }: UserTabProps<'NewClient'>) {
     mode: 'onChange',
   });
 
-  function createNewClient(data: NewClientScheema) {
-    console.log(data);
+  async function createNewClient(data: NewClientScheema) {
+    try {
+      await api.post('/Cliente', {
+        nome: data.name,
+        cpf: formatarCPF(data.cpf),
+        email: data.email,
+        dataNascimento: dataParaISO8601(data.bday),
+      });
+
+      showToast({
+        type: 'success',
+        message: 'Novo cliente cadastrado!',
+      });
+
+      navigation.navigate('ClientScreen');
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function goBack() {
@@ -62,6 +84,11 @@ export function NewClient({ navigation }: UserTabProps<'NewClient'>) {
               name="cpf"
               label="CPF"
               placeholder="Digite o CPF"
+              maxLength={11}
+              value={CPF}
+              onChangeText={text => {
+                setCPF(formatarCPF(text));
+              }}
             />
           </View>
 
@@ -71,6 +98,7 @@ export function NewClient({ navigation }: UserTabProps<'NewClient'>) {
               name="bday"
               label="Nascimento"
               placeholder="dd/mm/aaaa"
+              maxLength={8}
             />
           </View>
         </View>

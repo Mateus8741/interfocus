@@ -1,9 +1,9 @@
-import { Root } from '@DTOS';
+import { Cliente } from '@DTOS';
 import React from 'react';
 import { Text, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 interface CardProps {
-  data: Root;
+  data: Cliente;
   onPress?: () => void;
 }
 

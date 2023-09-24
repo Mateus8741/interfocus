@@ -10,7 +10,7 @@ export interface Cliente {
   cpf: string;
   dataNascimento: string;
   email: string;
-  id: number;
+  idCliente: number;
   nome: string;
   retorno: any[];
 }

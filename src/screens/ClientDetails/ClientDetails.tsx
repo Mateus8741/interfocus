@@ -3,6 +3,7 @@ import {
   Button,
   CustomBottomSheet,
   DetailsText,
+  FloatingButton,
   Header,
   MyBottonShetHandle,
   Screen,
@@ -14,8 +15,11 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useRef } from 'react';
 import { Dimensions, Text, View } from 'react-native';
 
-export function ClientDetails({ route }: UserTabProps<'ClientDetails'>) {
-  const { cliente, id } = route.params;
+export function ClientDetails({
+  route,
+  navigation,
+}: UserTabProps<'ClientDetails'>) {
+  const { id } = route.params;
 
   const { bottom } = useAppSafeArea();
 
@@ -23,12 +27,21 @@ export function ClientDetails({ route }: UserTabProps<'ClientDetails'>) {
 
   const modalSize = Dimensions.get('screen').height / 4.2 + bottom;
 
-  const formattedDate = new Date(cliente?.dataNascimento).toLocaleDateString(
-    'pt-BR',
-    {
-      timeZone: 'UTC',
-    },
-  );
+  const { data } = useQuery({
+    queryKey: ['bill', id],
+    queryFn: () => api.get(`/Divida/${id}`),
+  });
+
+  const { mutate, isLoading } = useMutationClient({
+    endPoint: '/Divida/Pagar',
+    body: data?.data?.id,
+  });
+
+  const formattedDate = new Date(
+    data?.data?.cliente?.dataNascimento,
+  ).toLocaleDateString('pt-BR', {
+    timeZone: 'UTC',
+  });
 
   function handleOpenModal() {
     modal.current?.handleParentOpenBottonShet();
@@ -38,30 +51,26 @@ export function ClientDetails({ route }: UserTabProps<'ClientDetails'>) {
     modal.current?.handleParentCloseBottonShet();
   }
 
-  const { data } = useQuery({
-    queryKey: ['bill', id],
-    queryFn: () => api.get(`/Divida/${id}`),
-  });
-
-  const { mutate, isLoading } = useMutationClient({
-    endPoint: '/Divida/Pagar',
-    body: id,
-  });
-
   function payBill() {
     mutate();
     handleCloseModal();
+  }
+
+  function addNewBill() {
+    navigation.navigate('NewBill', { id: data?.data.id });
   }
 
   return (
     <>
       <Header goBack title="Detalhes do cliente" />
       <Screen>
-        <DetailsText label="Nome" value={cliente?.nome} />
+        <FloatingButton onPress={addNewBill} />
+
+        <DetailsText label="Nome" value={data?.data?.cliente?.nome} />
 
         <View className="flex-row justify-between items-center space-x-2 mt-3 mb-3">
           <View className="w-[166px]">
-            <DetailsText label="CPF" value={cliente?.cpf} />
+            <DetailsText label="CPF" value={data?.data?.cliente?.cpf} />
           </View>
 
           <View className="w-[166px]">
@@ -69,7 +78,7 @@ export function ClientDetails({ route }: UserTabProps<'ClientDetails'>) {
           </View>
         </View>
 
-        <DetailsText label="Email" value={cliente?.email} />
+        <DetailsText label="Email" value={data?.data?.cliente?.email} />
 
         <View className="flex-row justify-between mt-6 mb-2">
           <Text className="text-contrast-700 text-lg font-Bold">Dívidas</Text>
