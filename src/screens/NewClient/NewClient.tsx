@@ -1,11 +1,17 @@
-import { Button, FormTextInput, Header, Screen } from '@components';
+import {
+  Button,
+  FormCustomRegexInput,
+  FormTextInput,
+  Header,
+  Screen,
+} from '@components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { UserTabProps } from '@routes';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Text, View } from 'react-native';
 
-import { dataParaISO8601, formatarCPF, useAppSafeArea } from '@hooks';
+import { dataParaISO8601, useAppSafeArea } from '@hooks';
 import { api } from '@libs';
 import { useToastService } from '@services';
 import { NewClientScheema, newClientScheema } from './newClientScheema';
@@ -33,7 +39,7 @@ export function NewClient({ navigation }: UserTabProps<'NewClient'>) {
     try {
       await api.post('/Cliente', {
         nome: data.name,
-        cpf: formatarCPF(data.cpf),
+        cpf: data.cpf,
         email: data.email,
         dataNascimento: dataParaISO8601(data.bday),
       });
@@ -67,7 +73,7 @@ export function NewClient({ navigation }: UserTabProps<'NewClient'>) {
 
         <View className="flex-row justify-between items-center space-x-2">
           <View className="w-[166px]">
-            <FormTextInput
+            {/* <FormTextInput
               control={control}
               name="cpf"
               label="CPF"
@@ -77,16 +83,30 @@ export function NewClient({ navigation }: UserTabProps<'NewClient'>) {
               onChangeText={text => {
                 setCPF(formatarCPF(text));
               }}
+            /> */}
+
+            <FormCustomRegexInput
+              control={control}
+              name="cpf"
+              label="CPF"
+              pattern="BRL_CPF"
             />
           </View>
 
           <View className="w-[166px]">
-            <FormTextInput
+            {/* <FormTextInput
               control={control}
               name="bday"
               label="Nascimento"
               placeholder="dd/mm/aaaa"
               maxLength={8}
+            /> */}
+
+            <FormCustomRegexInput
+              control={control}
+              name="bday"
+              label="Nascimento"
+              pattern="DATE_DDMMYYYY"
             />
           </View>
         </View>

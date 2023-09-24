@@ -6,6 +6,7 @@ export * from './CustonDropdown/CustonDropdown';
 export * from './DetailsTexts/DetailsText';
 export * from './FloatingButton/FloatingButton';
 export * from './FormCustomPickerSelect/FormCustomPickerSelect';
+export * from './FormCustomRegexInput/FormCustomRegexInput';
 export * from './FormTextIntput/FormTextInput';
 export * from './Header/Header';
 export * from './Screen/Screen';
