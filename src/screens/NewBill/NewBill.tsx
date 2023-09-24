@@ -18,8 +18,6 @@ import { NewBillScheema, newBillScheema } from './newBillScheema';
 export function NewBill({ navigation, route }: UserTabProps<'NewBill'>) {
   const { id } = route.params;
 
-  console.log('newbill', id);
-
   const { bottom } = useAppSafeArea();
 
   const { showToast } = useToastService();
@@ -102,7 +100,7 @@ export function NewBill({ navigation, route }: UserTabProps<'NewBill'>) {
             control={control}
             items={items}
             name="status"
-            label="Status"
+            label="Situação"
             onValueChange={() => {}}
           />
 

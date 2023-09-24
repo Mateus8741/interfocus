@@ -1,10 +1,4 @@
-import {
-  Button,
-  FloatingButton,
-  FormTextInput,
-  Header,
-  Screen,
-} from '@components';
+import { Button, FormTextInput, Header, Screen } from '@components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { UserTabProps } from '@routes';
 import React from 'react';
@@ -59,15 +53,9 @@ export function NewClient({ navigation }: UserTabProps<'NewClient'>) {
     navigation.goBack();
   }
 
-  function goToNewBill() {
-    navigation.navigate('NewBill');
-  }
-
   return (
     <>
       <Header goBack title="Novo cliente" />
-
-      <FloatingButton onPress={goToNewBill} />
 
       <Screen>
         <FormTextInput
