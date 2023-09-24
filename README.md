@@ -31,8 +31,8 @@ yarn install
 ```sh
 #EXPO GO
 npx expo start
-(i) para IOS
-(a) para ANDROID
+Tecle (i) para IOS
+Tecle (a) para ANDROID
 ```
 
 ```sh
