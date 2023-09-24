@@ -67,8 +67,8 @@ export function NewBill({ navigation, route }: UserTabProps<'NewBill'>) {
   return (
     <>
       <Header goBack title="Nova Dívida" />
-      <Screen>
-        <View className="flex-1">
+      <Screen scrollable>
+        <View className="">
           <FormTextInput
             control={control}
             name="bill"
@@ -76,7 +76,7 @@ export function NewBill({ navigation, route }: UserTabProps<'NewBill'>) {
             placeholder="Ex: Aluguel"
           />
 
-          <View className="flex-row justify-between items-center space-x-2">
+          <View className="flex-1 flex-row justify-between items-center space-x-2">
             <View className="w-[166px]">
               <FormTextInput
                 control={control}
@@ -115,7 +115,7 @@ export function NewBill({ navigation, route }: UserTabProps<'NewBill'>) {
         </View>
 
         <View
-          className="flex-row gap-x-4 self-center justify-end items-center"
+          className="flex-1 flex-row gap-x-4 self-center justify-end items-center mt-48"
           style={{ paddingBottom: bottom }}>
           <Button title="Cancelar" buttonType="outlined" onPress={goBack} />
           <Button

@@ -63,7 +63,7 @@ export function NewClient({ navigation }: UserTabProps<'NewClient'>) {
     <>
       <Header goBack title="Novo cliente" />
 
-      <Screen>
+      <Screen scrollable>
         <FormTextInput
           control={control}
           name="name"
@@ -122,14 +122,14 @@ export function NewClient({ navigation }: UserTabProps<'NewClient'>) {
           Dívidas
         </Text>
 
-        <View className="flex-1 justify-center items-center">
+        <View className="flex-1 h-48 justify-center items-center mb-14">
           <Text className="text-tezt-200 text-base font-Regular">
             Cliente sem dividas
           </Text>
         </View>
 
         <View
-          className="flex-row gap-x-4 self-center justify-end items-center"
+          className="flex-1 flex-row gap-x-4 self-center justify-end items-center"
           style={{ paddingBottom: bottom }}>
           <Button title="Cancelar" buttonType="outlined" onPress={goBack} />
           <Button
